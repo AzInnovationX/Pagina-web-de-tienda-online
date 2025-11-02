@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejemplo de Tienda Online - Az InnovationX</title>
+    <title>Az InnovationX - Soluciones Corporativas de E-commerce</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary-color: #1a73e8;
             --secondary-color: #0d47a1;
+            --accent-color: #4285f4;
             --dark-color: #202124;
             --light-color: #f8f9fa;
             --text-color: #3c4043;
+            --light-gray: #e8eaed;
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -37,18 +39,99 @@
             padding: 0 20px;
         }
 
+        /* Navigation Styles */
+        nav {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
         /* Header Styles */
         header {
-            padding: 40px 0;
+            padding: 120px 0 80px;
             text-align: center;
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 600;
             color: var(--dark-color);
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             position: relative;
             display: inline-block;
         }
@@ -63,6 +146,80 @@
             height: 3px;
             background-color: var(--primary-color);
             border-radius: 3px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--text-color);
+            max-width: 800px;
+            margin: 30px auto 0;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: #ffffff;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .feature-description {
+            color: var(--text-color);
+            line-height: 1.6;
         }
 
         /* Main Content Styles */
@@ -148,28 +305,6 @@
             text-decoration: underline;
         }
 
-        /* Footer Styles */
-        footer {
-            padding: 30px 0;
-            text-align: center;
-            background-color: var(--light-color);
-            position: relative;
-        }
-
-        .watermark {
-            font-size: 0.9rem;
-            color: #9aa0a6;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .watermark i {
-            margin-right: 8px;
-            color: var(--primary-color);
-        }
-
         /* Decorative Elements */
         .decoration {
             position: absolute;
@@ -194,10 +329,61 @@
             left: -50px;
         }
 
+        /* Footer Styles */
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            background-color: var(--light-color);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: #9aa0a6;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .copyright i {
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+
         /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+            }
+
+            .nav-links.active li {
+                margin: 10px 0;
+            }
+        }
+
         @media (max-width: 768px) {
             h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
             }
 
             .description {
@@ -232,16 +418,90 @@
     </style>
 </head>
 <body>
-    <div class="decoration decoration-1"></div>
-    <div class="decoration decoration-2"></div>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-cube"></i>
+                Az InnovationX
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#features">Características</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
 
-    <header>
+    <!-- Header -->
+    <header id="home">
+        <div class="decoration decoration-1"></div>
+        <div class="decoration decoration-2"></div>
         <div class="container">
-            <h1>Ejemplo de Tienda Online</h1>
+            <div class="header-content fade-in">
+                <h1>Soluciones Corporativas de E-commerce</h1>
+                <p class="subtitle">Transformamos tu negocio con tiendas online personalizadas, modernas y funcionales que impulsan el crecimiento y maximizan las ventas</p>
+            </div>
         </div>
     </header>
 
-    <main>
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title fade-in">Características Principales</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Diseño Responsivo</h3>
+                    <p class="feature-description">Nuestras tiendas se adaptan perfectamente a cualquier dispositivo, ofreciendo una experiencia de compra óptima en desktop, tablet y móvil.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 class="feature-title">Carrito de Compras Avanzado</h3>
+                    <p class="feature-description">Implementamos carritos intuitivos con opciones de guardado, cálculo automático de envíos y múltiples métodos de pago.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Análisis y Reportes</h3>
+                    <p class="feature-description">Accede a informes detallados sobre ventas, productos más vendidos, comportamiento de clientes y mucho más.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="feature-title">Seguridad Garantizada</h3>
+                    <p class="feature-description">Protegemos los datos de tus clientes con certificados SSL, pasarelas de pago seguras y medidas anti-fraude.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="feature-title">SEO Optimizado</h3>
+                    <p class="feature-description">Nuestras tiendas están optimizadas para motores de búsqueda, mejorando tu visibilidad y atrayendo más clientes potenciales.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="feature-title">Soporte Técnico</h3>
+                    <p class="feature-description">Ofrecemos soporte técnico continuo para asegurar que tu tienda funcione perfectamente en todo momento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main id="demo">
         <div class="container">
             <div class="description fade-in">
                 <p>Este es un ejemplo del tipo de tiendas online que desarrollamos para nuestros clientes. Nuestro equipo se especializa en crear soluciones de comercio electrónico personalizadas, modernas y funcionales que se adaptan a las necesidades específicas de cada negocio.</p>
@@ -253,22 +513,38 @@
 
             <div class="invitation fade-in">
                 <p>¿Listo para llevar tu negocio al siguiente nivel? Contáctanos hoy mismo y solicita una tienda online personalizada para tu empresa.</p>
-                <a href="mailto:contacto@azinnovationx.com" class="contact-link">Solicitar mi tienda personalizada</a>
+                <a href="https://solicitudes-az-innovation-x.vercel.app/" target="_blank" class="contact-link">Solicitar mi tienda personalizada</a>
             </div>
         </div>
     </main>
 
-    <footer>
+    <!-- Footer -->
+    <footer id="contact">
         <div class="container">
-            <div class="watermark">
-                <i class="fas fa-code"></i> Az InnovationX
+            <div class="copyright">
+                <i class="fas fa-code"></i> © 2025 Az InnovationX. Todos los derechos reservados.
             </div>
         </div>
     </footer>
 
     <script>
-        // Simple animation on scroll
+        // Mobile menu toggle
         document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                });
+            });
+            
+            // Simple animation on scroll
             const elements = document.querySelectorAll('.fade-in');
             
             function checkScroll() {
@@ -287,6 +563,16 @@
             
             // Check on scroll
             window.addEventListener('scroll', checkScroll);
+            
+            // Change nav background on scroll
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('nav');
+                if (window.scrollY > 50) {
+                    nav.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+                } else {
+                    nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+                }
+            });
         });
     </script>
 </body>
